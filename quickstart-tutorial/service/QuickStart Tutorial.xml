@@ -1,0 +1,44 @@
+<export><workspace name="QuickStart Tutorial"><query name="Customer Search" focus="true" listorder="1" taborder="1" active="true" database="4237163568115569895" server="6110445669530708342" database-name="data-hub-FINAL" server-name="data-hub-FINAL" mode="javascript">/*
+  This example is meant to show how you can use JavaScript APIs to develop 
+  a service that will meet our customers need to have a search application 
+  that lets them query across the integrated and curated customer data.
+  
+  IMPORTANT NOTE: RUN THIS QUERY AGAINST YOUR FINAL DATABASE!!
+*/
+
+// import the JSearch API so we can use it
+const jsearch = require('/MarkLogic/jsearch');
+
+// scope our search to the collection containing our mastered and curated data
+const customers = jsearch.collections('sm-Customer-mastered');
+
+// this will come from the business user on the front end. 
+// this is the sample shown in our wireframe.
+const query = 'paige AND pc:36504';
+
+// another example of a user search that will bring back data from our mastering example
+// uncomment and try it out
+// const query = 'mcclaren OR gates';
+
+//defining the data we want extracted and returned
+const myPaths = { paths: ['/envelope/instance/Customer/givenName', 
+                          '/envelope/instance/Customer/surname',
+                          '/envelope/instance/Customer/email',
+                          '/envelope/instance/Customer/postalCode',
+                          '/envelope/instance/Customer/shortPIN',
+                          '/envelope/instance/Customer/policyType'] };
+
+// define any custom search grammar. 
+// using 'pc:12345' will search against the postalCode range index we defined in our entity.
+const myGrammar = { pc: cts.jsonPropertyReference('postalCode') };
+
+// execute the search: parse the query string, apply the custom grammar, map the data we want returned
+const searchResults = 
+  customers.documents()
+    .where(cts.parse(query, myGrammar))
+    .map({ extract: myPaths })
+    .result();
+
+// view the results
+searchResults;
+</query></workspace></export>
