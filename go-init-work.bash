@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -v
 
 docker \
@@ -6,5 +7,5 @@ docker \
      -e MARKLOGIC_INIT=true \
      -e MARKLOGIC_ADMIN_USERNAME='admin' \
      -e MARKLOGIC_ADMIN_PASSWORD='admin' \
-     progressofficial/marklogic-db
+     docker.repo1.uhc.com/progressofficial/marklogic-db
 
