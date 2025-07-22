@@ -20,6 +20,8 @@
  :paths   ["src" "test" "resources"]
 
  :deps    {
+           clj-http/clj-http   {:mvn/version "3.13.1"}
+           ; http-kit {:mvn/version "2.8.0"}
            org.clojure/clojure {:mvn/version "1.12.1"}
            prismatic/schema    {:mvn/version "1.4.1"}
            tupelo/tupelo       {:mvn/version "24.12.25"}
