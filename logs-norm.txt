@@ -1,3 +1,5 @@
+# progressofficial/marklogic-db   latest    82f69ee243f0   
+
 ~/expr/marklogic > docker logs -f c5d44b4d0ff0
 2025-07-17 18:45:17.318 Info: Starting container with MarkLogic Server.
 2025-07-17 18:45:17.340 Info: | server ver: 11.3.1 | scripts ver: 2.1.3 | image type: ubi-rootless | branch: release-2.1.3 |
