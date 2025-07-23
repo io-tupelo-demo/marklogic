@@ -15,12 +15,12 @@
   ; enable to ping server to print/save sample data
   (when false
     (let [resp (http-client/get "http://localhost:8000/LATEST/search"
-                                {:query-params {:q "comvex.com"}
-                                 :timeout      999
-                                 :headers      {"accept" "application/json"}
-                                 :digest-auth  ["admin" "admin"]
-                                 ;  :debug true
-                                 })
+                 {:query-params {:q "comvex.com"}
+                  :timeout      999
+                  :headers      {"accept" "application/json"}
+                  :digest-auth  ["admin" "admin"]
+                  ;  :debug true
+                  })
           body (json->edn (grab :body resp))
           ]
       (is= 200 (grab :status resp))
@@ -73,13 +73,14 @@
 
 (verify
   (let [resp-01 (edn/read-string (slurp (io/resource "resp-01.txt")))]
-    (is= (resp->uris resp-01)
-      ["/Users/alan/expr/marklogic/data/cust7.json"
-       "/Users/alan/expr/marklogic/data/cust8.json"
-       "/Users/alan/expr/marklogic/data/cust1.json"
-       "/Users/alan/expr/marklogic/data/cust9.json"
+    ; query results are in random order => need set comparison
+    (is-set= (resp->uris resp-01)
+      ["/Users/alan/expr/marklogic/data/cust1.json"
        "/Users/alan/expr/marklogic/data/cust2.json"
        "/Users/alan/expr/marklogic/data/cust3.json"
        "/Users/alan/expr/marklogic/data/cust4.json"
        "/Users/alan/expr/marklogic/data/cust5.json"
-       "/Users/alan/expr/marklogic/data/cust6.json"])))
+       "/Users/alan/expr/marklogic/data/cust6.json"
+       "/Users/alan/expr/marklogic/data/cust7.json"
+       "/Users/alan/expr/marklogic/data/cust8.json"
+       "/Users/alan/expr/marklogic/data/cust9.json"])))
