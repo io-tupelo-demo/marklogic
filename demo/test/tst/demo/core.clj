@@ -24,9 +24,10 @@
           body (json->edn (grab :body resp))
           ]
       (is= 200 (grab :status resp))
-      (spit "resp-01.tmp" resp)
       (spyx-pretty resp)
       (spyx-pretty body)
+      (let [resp-str (with-out-str (spyx-pretty resp))]
+        (spit "resp-01.tmp" resp-str))
       (with-map-vals body [results]
         (spyx (count results))
         (let [r0  (nth results 0)
