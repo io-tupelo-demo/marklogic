@@ -1,7 +1,7 @@
 #!/bin/bash
 set -v
 
-curl --anyauth --user admin:admin   \
-  -X GET -i \
-  'http://localhost:8000/LATEST/documents?uri=/Users/alan/expr/marklogic/data/cust1.json'
+curl -v --anyauth  --user admin:admin   \
+    -H "Accept: application/json"       \
+    'http://localhost:8000/LATEST/documents?uri=/Users/athom555/expr/marklogic/data/cust3.json'
 
