@@ -15,12 +15,12 @@
   ; enable to ping server to print/save sample data
   (when false
     (let [resp (http-client/get "http://localhost:8000/LATEST/search"
-                 {:query-params {:q "comvex.com"}
-                  :timeout      999
-                  :headers      {"accept" "application/json"}
-                  :digest-auth  ["admin" "admin"]
-                  ;  :debug true
-                  })
+                                {:query-params {:q "comvex.com"}
+                                 :timeout      999
+                                 :headers      {"accept" "application/json"}
+                                 :digest-auth  ["admin" "admin"]
+                                 ;  :debug true
+                                 })
           body (json->edn (grab :body resp))
           ]
       (is= 200 (grab :status resp))
@@ -41,29 +41,28 @@
                                :total-time              "PT0.004421S"}
               :page-length    10
               :qtext          "comvex.com"
-              :results
-              [{:confidence 0.1590108
-                :fitness    0.2357023
-                :format     "json"
-                :href       "/v1/documents?uri=%2FUsers%2Falan%2Fexpr%2Fmarklogic%2Fdata%2Fcust7.json"
-                :index      1
-                :matches    [{:match-text ["blancheblevins@" {:highlight "comvex.com"}]
-                              :path       "fn:doc(\"/Users/alan/expr/marklogic/data/cust7.json\")/text(\"Email\")"}]
-                :mimetype   "application/json"
-                :path       "fn:doc(\"/Users/alan/expr/marklogic/data/cust7.json\")"
-                :score      2048
-                :uri        "/Users/alan/expr/marklogic/data/cust7.json"}
-               {:confidence 0.1590108
-                :fitness    0.2357023
-                :format     "json"
-                :href       "/v1/documents?uri=%2FUsers%2Falan%2Fexpr%2Fmarklogic%2Fdata%2Fcust8.json"
-                :index      2
-                :matches    [{:match-text ["carissastein@" {:highlight "comvex.com"}]
-                              :path       "fn:doc(\"/Users/alan/expr/marklogic/data/cust8.json\")/text(\"Email\")"}]
-                :mimetype   "application/json"
-                :path       "fn:doc(\"/Users/alan/expr/marklogic/data/cust8.json\")"
-                :score      2048
-                :uri        "/Users/alan/expr/marklogic/data/cust8.json"}]
+              :results        [{:confidence 0.1590108
+                                :fitness    0.2357023
+                                :format     "json"
+                                :href       "/v1/documents?uri=%2FUsers%2Falan%2Fexpr%2Fmarklogic%2Fdata%2Fcust7.json"
+                                :index      1
+                                :matches    [{:match-text ["blancheblevins@" {:highlight "comvex.com"}]
+                                              :path       "fn:doc(\"/Users/alan/expr/marklogic/data/cust7.json\")/text(\"Email\")"}]
+                                :mimetype   "application/json"
+                                :path       "fn:doc(\"/Users/alan/expr/marklogic/data/cust7.json\")"
+                                :score      2048
+                                :uri        "/Users/alan/expr/marklogic/data/cust7.json"}
+                               {:confidence 0.1590108
+                                :fitness    0.2357023
+                                :format     "json"
+                                :href       "/v1/documents?uri=%2FUsers%2Falan%2Fexpr%2Fmarklogic%2Fdata%2Fcust8.json"
+                                :index      2
+                                :matches    [{:match-text ["carissastein@" {:highlight "comvex.com"}]
+                                              :path       "fn:doc(\"/Users/alan/expr/marklogic/data/cust8.json\")/text(\"Email\")"}]
+                                :mimetype   "application/json"
+                                :path       "fn:doc(\"/Users/alan/expr/marklogic/data/cust8.json\")"
+                                :score      2048
+                                :uri        "/Users/alan/expr/marklogic/data/cust8.json"}]
               :snippet-format "snippet"
               :start          1
               :total          9}]
